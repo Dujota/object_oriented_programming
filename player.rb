@@ -40,19 +40,33 @@ class Player
 
   def do_battle(damage)
     @health_points -= damage
+    if @health_points < 1
+      @lives -=1
+      @health_points = 10
+    elsif @lives == 0
+      restart
+    end
 
   end
+
+
 
 end
 
 
 player1 = Player.new
 
-puts '-'*33
+
+def line_break
+  puts '-'*90
+end
+
+
+line_break
 puts player1.inspect
 puts "you have leveled up therefore your lives is now at #{player1.level_up}"
 puts player1.inspect
-puts '-'*33
+line_break
 
 puts "lets try to collect some treasure!!!"
 7.times {
@@ -66,4 +80,21 @@ puts "if we collect more than 10 coins, we level up!!! :D"
   player1.collect_treasure.inspect
   puts player1.inspect
 }
-puts '-'*33
+
+
+line_break
+puts player1.do_battle(10)
+puts player1.inspect
+puts player1.do_battle(5)
+puts player1.inspect
+puts player1.do_battle(3)
+puts player1.inspect
+puts player1.do_battle(50)
+puts player1.inspect
+
+5.times {
+  player1.do_battle(10)
+  puts player1.inspect
+}
+
+line_break
