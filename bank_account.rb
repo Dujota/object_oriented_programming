@@ -21,6 +21,9 @@ class BankAccount
   def initialize
     @balance = 0
     @interest_rate = 0
+
+    # https://www.calculatorsoup.com/calculators/financial/simple-interest-plus-principal-calculator.php
+    # total = Principal(@balance)*(1+ rate/100)
   end
 
   def deposit(amount)
@@ -32,9 +35,14 @@ class BankAccount
     @balance -= amount
   end
 
+  def gain_interest_calculation(rate)
+    @interest_rate = @balance * ((1)+ (rate/100))
+  end
+  
 end
 
 bankaccount = BankAccount.new
 
 puts bankaccount.deposit(10)
 puts bankaccount.withdraw(5)
+puts bankaccount.gain_interest_calculation(2.5)
