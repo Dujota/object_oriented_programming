@@ -38,7 +38,7 @@ class BankAccount
   def gain_interest_calculation(rate)
     @interest_rate = @balance * ((1)+ (rate/100))
   end
-  
+
 end
 
 bankaccount = BankAccount.new
