@@ -30,6 +30,10 @@ class Player
 
   end
 
+  def collect_treasure
+
+  end
+
   def do_battle(damage)
     @health_points -= damage
 
@@ -45,3 +49,5 @@ puts player1.inspect
 puts "you have leveled up therefore your lives is now at #{player1.level_up}"
 puts player1.inspect
 puts '-'*33
+
+puts
