@@ -20,9 +20,12 @@
 class Player
 
   def initialize
+    # @gold_coins, @health_points, @lives = 0 ,10, 5  <-  this is the same as listing the variables all after the other
     @gold_coins = 0
     @health_points = 10
     @lives = 5
+
+
   end
 
   def level_up
@@ -51,6 +54,7 @@ class Player
 
   def restart
     initialize
+    #or can do :   @gold_coins, @health_points, @lives = 0 ,10, 5 <--- short hand
   end
 
 end
