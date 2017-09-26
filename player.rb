@@ -31,6 +31,10 @@ class Player
   end
 
   def collect_treasure
+    @gold_coins += 1
+    if @gold_coins % 10 == 0
+      level_up
+    end
 
   end
 
@@ -50,4 +54,16 @@ puts "you have leveled up therefore your lives is now at #{player1.level_up}"
 puts player1.inspect
 puts '-'*33
 
+puts "lets try to collect some treasure!!!"
+7.times {
+  player1.collect_treasure
+  puts player1.inspect
+}
+puts player1.inspect
 puts
+puts "if we collect more than 10 coins, we level up!!! :D"
+10.times {
+  player1.collect_treasure.inspect
+  puts player1.inspect
+}
+puts '-'*33
