@@ -49,7 +49,9 @@ class Player
 
   end
 
-
+  def restart
+    initialize
+  end
 
 end
 
@@ -83,6 +85,7 @@ puts "if we collect more than 10 coins, we level up!!! :D"
 
 
 line_break
+
 puts player1.do_battle(10)
 puts player1.inspect
 puts player1.do_battle(5)
@@ -92,9 +95,11 @@ puts player1.inspect
 puts player1.do_battle(50)
 puts player1.inspect
 
-5.times {
+6.times {
   player1.do_battle(10)
   puts player1.inspect
 }
+
+puts player1.inspect
 
 line_break
