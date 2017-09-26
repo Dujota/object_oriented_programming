@@ -25,5 +25,23 @@ class Player
     @lives = 5
   end
 
+  def level_up
+    @lives += 1
+
+  end
+
+  def do_battle(damage)
+    @health_points -= damage
+
+  end
 
 end
+
+
+player1 = Player.new
+
+puts '-'*33
+puts player1.inspect
+puts "you have leveled up therefore your lives is now at #{player1.level_up}"
+puts player1.inspect
+puts '-'*33
