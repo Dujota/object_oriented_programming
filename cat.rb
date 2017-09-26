@@ -48,19 +48,33 @@ class Cat
     @meal_time = time
   end
 
+  def eats_at
+    if @meal_time < 12
+      p "#{@meal_time} AM"
+    else
+      p "#{@meal_time - 12} PM"
+    end
+  end
+  def meow
+    puts "My name is #{@name} and I eat #{@preferred_food} at #{eats_at}"
+
+  end
+
 end
 
 cat1 = Cat.new
 cat1.assign_name("Oz")
 cat1.preferred_food_type("chicken")
 cat1.meal_time(6)
-
+cat1.eats_at
+cat1.meow
 
 cat2 = Cat.new
 cat2.assign_name("Simba")
 cat2.preferred_food_type('salmon')
 cat2.meal_time(8)
-
+cat2.eats_at
+cat2.meow
 
 puts cat1.inspect
 puts '-'*33
