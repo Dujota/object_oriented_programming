@@ -23,7 +23,7 @@
 # This method should return a string about the paperboy's performance
 # e.g. "I'm Tommy, I've delivered 90 papers and I've earned $38.25 so far!"
 
-
+#
 
 
 
@@ -31,15 +31,30 @@ class Paperboy
   def initialize(name)
     @name = name
     @experience = 0
-    @earnings = 0
+    @earnings = 0.0
     @quota = 50
   end
 
+#need a start and end point, find out the total # of deliveries by subtracting the start point from the end point
+#with that value update @experience.
+#then check the value of @experience against the quota to find out earnings
+#use if to go through the possibilities and multiply them by the earning amount
   def deliver(start_address, end_address)
+    @experience = end_address - start_address
+  end
 
+  def earnings
+    if @experience <= 50
+      @earnings = @experience * 0.25
+    elsif @experience > 50
+      @earnings = (@quota * 0.25) + ((@experience-@quota)*0.5)
+    else
+      @earnings = (@experience * 0.25) - 2.0
+    end
   end
 
   def quota
+    quota = (@experience/2)+ @quota
 
   end
 
@@ -57,15 +72,15 @@ end
 
 tommy = Paperboy.new("Tommy")
 
-tommy.quota # => 50
-tommy.deliver(101, 160) # => 17.5
-tommy.earnings #=> 17.5
-tommy.report # => "I'm Tommy, I've delivered 60 papers and I've earned $17.5 so far!"
+puts tommy.quota # => 50
+puts tommy.deliver(101, 160) # => 17.5
+puts tommy.earnings #=> 17.5
+puts tommy.report # => "I'm Tommy, I've delivered 60 papers and I've earned $17.5 so far!"
 
-tommy.quota # => 80
-tommy.deliver(1, 75) # => 16.75
-tommy.earnings #=> 34.25
-tommy.report # => "I'm Tommy, I've been delivered 135 papers and I've earned $34.25 so far!"
+puts tommy.quota # => 80
+puts tommy.deliver(1, 75) # => 16.75
+puts tommy.earnings #=> 34.25
+puts tommy.report # => "I'm Tommy, I've been delivered 135 papers and I've earned $34.25 so far!"
 
 
 
