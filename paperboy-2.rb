@@ -25,7 +25,7 @@
 
 #
 
-require 'pry'
+
 
 class Paperboy
   def initialize(name)
@@ -40,37 +40,28 @@ class Paperboy
 #then check the value of @experience against the quota to find out earnings
 #use if to go through the possibilities and multiply them by the earning amount
 
+  def quota
+    return (@experience/2)+ 50 #<---- this is the first delivery quota
+  end
 
-#we need to capture earnings in a variable in order to return it and not rund earnings function again on the new updated Experience.
-
-# we have to update experience so that the next delviery will capture the carry over amount on quota method so that the earnings function will calculate the next delivery accurate
   def deliver(start_address, end_address)
-    earn = earnings
-    @experience = (end_address - start_address) + 1
-    return earn
+    run = (end_address - start_address) + 1
+    earnings
+    @experience += (end_address - start_address) + 1
+    #should calculate the earnings for this run and update the experience
+    # thats it
+
   end
 
   def earnings
-    # binding.pry
-    if @experience == quota
-      puts 'test2'
+    if @experience <= 50
       @earnings = @experience * 0.25
-    elsif @experience > quota
-      puts "@experience > 50"
-      @earnings = (quota * 0.25) + ((@experience-quota)*0.5)
+    elsif @experience > 50
+      @earnings = (@quota * 0.25) + ((@experience-@quota)*0.5)
     else
-      puts '@experience < 50'
-      @earnings = (@experience * 0.25 )- 2.0
+      @earnings = (@experience * 0.25) - 2.0
     end
   end
-
-  def quota
-    quota = (@experience/2)+ @quota
-
-  end
-
-
-
 
 
   def report

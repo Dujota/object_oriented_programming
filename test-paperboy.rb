@@ -25,14 +25,14 @@
 
 #
 
-require 'pry'
+
 
 class Paperboy
   def initialize(name)
     @name = name
-    @experience = 0
+    @experience = 60
     @earnings = 0.0
-    @quota = 50
+    @quota = 80
   end
 
 #need a start and end point, find out the total # of deliveries by subtracting the start point from the end point
@@ -40,37 +40,35 @@ class Paperboy
 #then check the value of @experience against the quota to find out earnings
 #use if to go through the possibilities and multiply them by the earning amount
 
+  def quota
+    # return (@experience/2)+ 50 #<---- this is the first delivery quota
+  end
 
-#we need to capture earnings in a variable in order to return it and not rund earnings function again on the new updated Experience.
-
-# we have to update experience so that the next delviery will capture the carry over amount on quota method so that the earnings function will calculate the next delivery accurate
   def deliver(start_address, end_address)
-    earn = earnings
-    @experience = (end_address - start_address) + 1
-    return earn
+    @run = (end_address - start_address) + 1
+
+    @experience += @run
+    if @run <= 50
+      @earnings = @run * 0.25
+    elsif @run > 50
+      @earnings = (@quota * 0.25) + ((@run-@quota)*0.5)
+    else
+      @earnings = (@run * 0.25) - 2.0
+    end
+    #should calculate the earnings for this run and update the experience
+    # thats it
+    @earnings
   end
 
   def earnings
-    # binding.pry
-    if @experience == quota
-      puts 'test2'
+    if @experience <= 50
       @earnings = @experience * 0.25
-    elsif @experience > quota
-      puts "@experience > 50"
-      @earnings = (quota * 0.25) + ((@experience-quota)*0.5)
+    elsif @experience > 50
+      @earnings = (@quota * 0.25) + ((@experience-@quota)*0.5)
     else
-      puts '@experience < 50'
-      @earnings = (@experience * 0.25 )- 2.0
+      @earnings = (@experience * 0.25) - 2.0
     end
   end
-
-  def quota
-    quota = (@experience/2)+ @quota
-
-  end
-
-
-
 
 
   def report
@@ -88,7 +86,7 @@ end
 tommy = Paperboy.new("Tommy")
 
 puts tommy.quota # => 50
-puts tommy.deliver(101, 160) # => 17.5
+puts tommy.deliver(1, 75) # => 17.5
 puts tommy.earnings #=> 17.5
 puts tommy.report # => "I'm Tommy, I've delivered 60 papers and I've earned $17.5 so far!"
 
