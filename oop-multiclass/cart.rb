@@ -19,7 +19,6 @@ class Cart
         @@cart.delete(item)
       end
     end
-    return @@cart
   end
 
   def self.all_before_tax
